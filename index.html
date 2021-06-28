@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>FireAI</title>
+        <meta name="title" content="FireAI">
+        <meta name="description" content="FireAI">
+        <meta property="og:image" content="https://cdn.discordapp.com/attachments/812384891165343784/812392517509185556/icon.png" >
+        <link rel="icon" href="https://cdn.discordapp.com/attachments/812384891165343784/812392517509185556/icon.png">
+        <meta name="viewport" content="width=device-width, initial-scale=0.9">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    </head>
+    <body>
+        <br>
+        <br>
+    <div align="center">
+        <font size="50px">
+            <img style="vertical-align:middle;height:50px" src="https://cdn.discordapp.com/attachments/812384891165343784/812392517509185556/icon.png">
+            FireAI
+        </font>
+        <br>
+        <br>
+            <button onclick="pxsty()">Konuş <i class="fad fa-headphones-alt"></i></button>
+            <div id="mesajlar">
+                <br>
+            </div>
+    </div>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
+          body{
+              background:#36393F;
+              color:white;
+              font-family: 'Noto Sans JP', sans-serif;
+          }
+          button{
+              padding:5px 10px;
+              font-size:24px;
+              border:2px;
+              border-radius:5px;
+              background:#6BA8E7;
+              color:white;
+          }
+        </style>
+
+        <script>
+  
+
+            function pxsty(){
+        var sayi = 0;
+        const api = new webkitSpeechRecognition;
+        api.lang = "tr";
+        api.onresult = function(e){
+            if(event.results.length > 0){
+        veri = event.results[event.results.length - 1];
+        if(veri.isFinal){ 
+        $("#mesajlar").append("<h2><i class='fad fa-user-friends'></i> &nbsp; | Cümle : "+veri[0].transcript+"</h2>")
+    
+          
+        }//Konuşma Bitişi Algılayıcı Kapanış
+            }// Karakter Kontrol Kapanış
+        }//OnResult Kapanış
+        api.start();
+    }
+          $(document).keypress(function(event) {
+
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+console.log(keycode)
+  if (keycode == 32) {
+    pxsty();
+  }
+});
+        
+        </script>
+
+    </body>
+</html>
